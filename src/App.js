@@ -5,24 +5,19 @@ import React, { useState, useEffect } from "react";
 
 const NumbersArray = [
   {
-    keyCode: 48,
-    numberValue: 0,
-    id: "zero",
+    keyCode: 55,
+    numberValue: 7,
+    id: "seven",
   },
   {
-    keyCode: 49,
-    numberValue: 1,
-    id: "one",
+    keyCode: 56,
+    numberValue: 8,
+    id: "eight",
   },
   {
-    keyCode: 50,
-    numberValue: 2,
-    id: "two",
-  },
-  {
-    keyCode: 51,
-    numberValue: 3,
-    id: "three",
+    keyCode: 57,
+    numberValue: 9,
+    id: "nine",
   },
   {
     keyCode: 52,
@@ -40,19 +35,29 @@ const NumbersArray = [
     id: "six",
   },
   {
-    keyCode: 55,
-    numberValue: 7,
-    id: "seven",
+    keyCode: 49,
+    numberValue: 1,
+    id: "one",
   },
   {
-    keyCode: 56,
-    numberValue: 8,
-    id: "eight",
+    keyCode: 50,
+    numberValue: 2,
+    id: "two",
   },
   {
-    keyCode: 57,
-    numberValue: 9,
-    id: "nine",
+    keyCode: 51,
+    numberValue: 3,
+    id: "three",
+  },
+  {
+    keyCode: 48,
+    numberValue: 0,
+    id: "zero",
+  },
+  {
+    keyCode: 48,
+    numberValue: ".",
+    id: "decimal",
   },
 ];
 
