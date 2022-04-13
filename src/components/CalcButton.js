@@ -1,11 +1,11 @@
 import React, { useEffect, useState } from "react";
 
-function CalcButton({ clip, addNumber }) {
+function CalcButton({ number, addNumber }) {
   const [active, setActive] = useState(false);
 
   const handleKeyPress = (e) => {
-    if (e.keyCode === clip.keyCode) {
-      addNumber(clip);
+    if (e.keyCode === number.keyCode) {
+      addNumber(number);
     }
   };
 
@@ -18,13 +18,15 @@ function CalcButton({ clip, addNumber }) {
 
   return (
     <div
-      className={active ? "activate drum-pad" : "drum-pad normal"}
-      onClick={() => addNumber(clip)}
+      className={
+        active ? "activate calculator-button" : "calculator-button normal"
+      }
+      onClick={() => addNumber(number)}
       //size="lg"
       variant="secondary"
-      id={clip.id}
+      id={number.id}
     >
-      {clip.numberValue}
+      {number.numberValue}
     </div>
   );
 }

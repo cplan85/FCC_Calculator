@@ -100,7 +100,7 @@ h1 {
   -moz-box-shadow: 5px 21px 20px rgba(0, 0, 0, 0.4);
 }
 
-.drum-pad {
+.calculator-button {
   flex-grow: 1;
   background-color: rgba(0, 0, 0, 0.8);
   border: 1px solid rgba(105, 39, 107, 0.8);
@@ -110,22 +110,27 @@ h1 {
   vertical-align: middle;
   color: white;
   border-radius: 0.2em;
+  cursor:pointer;
 }
 
-.drum-pad:nth-child(1) {
+.calculator-button:hover {
+  border: 2px solid rgba(246, 240, 246, 0.8);
+}
+
+.calculator-button:nth-child(1) {
   background: #d62b6a;
   width: 2fr;
   grid-column-start: 1;
   grid-column-end: 3;
 }
 
-.drum-pad:nth-child(16) {
+.calculator-button:nth-child(16) {
   background: #d62b6a;
   grid-column-start: 1;
   grid-column-end: 3;
 }
 
-.drum-pad:nth-child(15) {
+.calculator-button:nth-child(15) {
   background: #816df2;
   grid-row-start: 4;
   grid-row-end: 6;
