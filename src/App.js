@@ -87,24 +87,21 @@ function App() {
       opRegex.test(operationsDisplay)
     ) {
       replaceInputs(numberValue);
-      setCount(1);
     } else if (
       endsWithOperator.test(operationsDisplay) &&
       numberValue !== "-"
     ) {
-      let updatedValue = operationsDisplay.replace(/[*+\‑/]/, numberValue);
-      setOperationsDisplay(updatedValue);
       setCurrentDisplay(numberValue);
     } else if (answer !== null) {
-      setOperationsDisplay(answer.concat(num.numberValue));
-      setCurrentDisplay(num.numberValue);
+      setOperationsDisplay(answer.concat(numberValue));
+      setCurrentDisplay(numberValue);
       setCount(count + 1);
     } else if (count === 2 && !isFullExpression.test(operationsDisplay)) {
       let justNumber = operationsDisplay.replace(/\D/g, "");
-      setOperationsDisplay(justNumber.concat(num.numberValue));
+      setOperationsDisplay(justNumber.concat(numberValue));
     } else {
       setCurrentDisplay(numberValue);
-      setOperationsDisplay(operationsDisplay.concat(num.numberValue));
+      setOperationsDisplay(operationsDisplay.concat(numberValue));
       setCount(count + 1);
     }
   };
@@ -124,15 +121,15 @@ function App() {
       //if you press . and the current display already has . then keep same display
     } else if (numberValue === "." && currentDisplay.includes(".")) {
       setCurrentDisplay(currentDisplay);
-      //
+      // if current button value is */+- then execute handle Operator
     } else if (opRegex.test(numberValue)) {
       handleOperators(num);
       // you press = and the calculate function gets executed
     } else if (numberValue === "=") {
       calculate(num);
     } else if (operationsDisplay.includes("=")) {
-      setCurrentDisplay(currentDisplay.concat(num.numberValue));
-      setOperationsDisplay(answer.concat(num.numberValue));
+      setCurrentDisplay(currentDisplay);
+      setOperationsDisplay(operationsDisplay);
     } else {
       setCurrentDisplay(currentDisplay.concat(num.numberValue));
       setOperationsDisplay(operationsDisplay.concat(num.numberValue));
