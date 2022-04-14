@@ -130,6 +130,9 @@ function App() {
     } else if (operationsDisplay.includes("=")) {
       setCurrentDisplay(currentDisplay);
       setOperationsDisplay(operationsDisplay);
+    } else if (numberValue === "0" && currentDisplay !== "0") {
+      setCurrentDisplay(currentDisplay.concat(num.numberValue));
+      setOperationsDisplay(operationsDisplay.concat(num.numberValue));
     } else {
       setCurrentDisplay(currentDisplay.concat(num.numberValue));
       setOperationsDisplay(operationsDisplay.concat(num.numberValue));
