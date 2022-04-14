@@ -4,12 +4,15 @@ import React, { useState } from "react";
 import NumbersArray from "./components/CalcButtonsArray";
 import { evaluate } from "mathjs";
 
-const isOperator = /^[*/+\-]$/,
-  isNumber = /[0-9]/,
+//const isOperator = /^[*/+\-]$/,
+const isNumber = /[0-9]/,
   endsWithOperator = /[0-9][*+\‑/]$/,
   endsWithNegativeSign = /[0-9]-$/,
   beginsWithDivideorMultiply = /^[*/]/,
   isFullExpression = /[0-9][*+\-][0-9]/;
+//new operation Regex
+
+const opRegex = /[+|\-|/|*]/g;
 
 function App() {
   const [currentDisplay, setCurrentDisplay] = useState("0");
@@ -40,7 +43,36 @@ function App() {
       setOperationsDisplay(operationsDisplay);
     } else {
       let finalAnswer = evaluate(operationsDisplay).toString();
-      console.log("type of operation display", typeof operationsDisplay);
+      //NEW ADDITION TO CALCULATOR
+      console.log("type of operation display", operationsDisplay);
+      let numbersOnly = operationsDisplay.split(opRegex).map(Number);
+
+      let operatorOnly = operationsDisplay.match(opRegex);
+      console.log(operatorOnly);
+      console.log(numbersOnly);
+      let stringResult = 0;
+      switch (operatorOnly[0]) {
+        case "+":
+          // console.log("add calculated")
+          stringResult = numbersOnly[0] + numbersOnly[1];
+          break;
+        case "-":
+          // console.log("subtract calculated")
+          stringResult = numbersOnly[0] - numbersOnly[1];
+          break;
+        case "*":
+          // console.log("multiply calculated")
+          stringResult = numbersOnly[0] * numbersOnly[1];
+          break;
+        case "/":
+          // console.log("divide calculated")
+          stringResult = numbersOnly[0] / numbersOnly[1];
+          break;
+        default:
+          console.log("Calculate switch statement missed something");
+      }
+      console.log("String Result", stringResult);
+      //let finalAnswer = stringResult.toString();
       setCurrentDisplay(finalAnswer);
       setOperationsDisplay(`${operationsDisplay}=${finalAnswer}`);
       setAnswer(finalAnswer);
@@ -51,8 +83,8 @@ function App() {
   const handleOperators = (num) => {
     const { numberValue } = num;
     if (
-      (isOperator.test(currentDisplay) || currentDisplay === "0") &&
-      isOperator.test(operationsDisplay)
+      (opRegex.test(currentDisplay) || currentDisplay === "0") &&
+      opRegex.test(operationsDisplay)
     ) {
       replaceInputs(numberValue);
       setCount(1);
@@ -93,7 +125,7 @@ function App() {
     } else if (numberValue === "." && currentDisplay.includes(".")) {
       setCurrentDisplay(currentDisplay);
       //
-    } else if (isOperator.test(numberValue)) {
+    } else if (opRegex.test(numberValue)) {
       handleOperators(num);
       // you press = and the calculate function gets executed
     } else if (numberValue === "=") {
