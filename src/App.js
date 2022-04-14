@@ -2,6 +2,7 @@ import "./App.css";
 import CalcButton from "./components/CalcButton";
 import React, { useState } from "react";
 import NumbersArray from "./components/CalcButtonsArray";
+import { evaluate } from "mathjs";
 
 const isOperator = /^[*/+\-]$/,
   isNumber = /[0-9]/,
@@ -38,7 +39,8 @@ function App() {
       setCurrentDisplay(currentDisplay);
       setOperationsDisplay(operationsDisplay);
     } else {
-      let finalAnswer = eval(operationsDisplay).toString();
+      let finalAnswer = evaluate(operationsDisplay).toString();
+      console.log("type of operation display", typeof operationsDisplay);
       setCurrentDisplay(finalAnswer);
       setOperationsDisplay(`${operationsDisplay}=${finalAnswer}`);
       setAnswer(finalAnswer);
@@ -65,7 +67,7 @@ function App() {
       setOperationsDisplay(answer.concat(num.numberValue));
       setCurrentDisplay(num.numberValue);
       setCount(count + 1);
-    } else if (count == 2 && !isFullExpression.test(operationsDisplay)) {
+    } else if (count === 2 && !isFullExpression.test(operationsDisplay)) {
       let justNumber = operationsDisplay.replace(/\D/g, "");
       setOperationsDisplay(justNumber.concat(num.numberValue));
     } else {
@@ -94,7 +96,7 @@ function App() {
     } else if (isOperator.test(numberValue)) {
       handleOperators(num);
       // you press = and the calculate function gets executed
-    } else if (numberValue == "=") {
+    } else if (numberValue === "=") {
       calculate(num);
     } else if (operationsDisplay.includes("=")) {
       setCurrentDisplay(currentDisplay.concat(num.numberValue));
