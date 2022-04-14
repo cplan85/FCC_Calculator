@@ -100,8 +100,10 @@ function App() {
       let justNumber = operationsDisplay.replace(/\D/g, "");
       setOperationsDisplay(justNumber.concat(numberValue));
     } else {
-      setCurrentDisplay(numberValue);
+      console.log("this conditional creates the issue", currentDisplay);
       setOperationsDisplay(operationsDisplay.concat(numberValue));
+      setCurrentDisplay(numberValue);
+
       setCount(count + 1);
     }
   };
